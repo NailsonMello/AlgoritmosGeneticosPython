@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+      <link rel="stylesheet" href="static/css/style.css">
+
+    <title>Algoritmos Genéticos</title>
+<style>
+        
+	#img_problema{
+		width:100%;
+		padding:10px;
+	}
+	
+    </style>
+  </head>
+  <body>
+
+          <nav class="navbar navbar-expand-lg navbar-light bg-light">
+              <div class="container">
+                   <a class="navbar-brand" href="/"><img id="logo-principal" src="static/images/connectst.jpeg"/> Startup Connects </a>
+				   
+              </div>
+			   <form role="form" action="{{url_for('send_data')}}"  method="POST">     
+                 <input type="submit" class="btn btn-secondary btn-sm" value="Gerar">           
+            
+			</form>
+          </nav>
+
+            
+                     
+                  <div class="container">
+				  {%if rugtt != null%}
+					<h4 class="text-center">Melhor solução</h4>	
+					<table class="table table-sm table-hover">
+					  <thead class="thead-light">
+						<tr>
+						  <th scope="col"class="text-center">Geração:</th>
+						  <th scope="col"class="text-center">Valor</th>
+						  <th scope="col"class="text-center">Espaço</th>
+						</tr>
+					  </thead>
+					  <tbody>
+						<tr>
+						  <td class="text-center">{{gerr}}</td>
+						  <td class="text-center">R$ {{vr}}</td>
+						  <td class="text-center">{{ep}}m³</td>
+						</tr>
+					  </tbody>
+					</table>
+					<table class="table table-sm table-hover">
+					  <thead class="thead-light">
+						<tr>
+						  <th scope="col" class="text-center">Cromossomo:</th>
+						</tr>
+					  </thead>
+					  <tbody>
+						<tr>
+						  <td>{{cr}}</td>
+						</tr>
+					  </tbody>
+					</table>
+                     {%for ru in rugtt%}
+                      <h6>{{ru}}</h6>
+                      {% endfor %}
+                 
+                 
+             
+       <div class="col-sm-12">
+	   <canvas class="line-charts container"></canvas>
+	   </div>
+	   {%endif%}
+	   {%if rugtt == null%}
+	   <h3 class="text-center">Problema a ser resolvido</h3>
+	   <img id="img_problema" title="Problema a ser resolvido" src="static/images/problema.png"/> 
+	   <h6><b>Atividade realizada por:</b></h6>
+	   <span>Jacson Gomes</span><br>
+	   <span>Nailson Melo</span>
+	    {%endif%}
+		
+	    </div>
+	    <!--geracao do grafico-->  
+	   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+	   
+	   <script>
+	   var ctx = document.getElementsByClassName("line-charts");
+	   
+	   var chartGraph = new Chart(ctx, {
+		type: 'line',
+		data: {
+		
+		labels:["0	","1	",
+"2	",
+"3	",
+"4	",
+"5	",
+"6	",
+"7	",
+"8	",
+"9	",
+"10	",
+"11	",
+"12	",
+"13	",
+"14	",
+"15	",
+"16	",
+"17	",
+"18	",
+"19	",
+"20	",
+"21	",
+"22	",
+"23	",
+"24	",
+"25	",
+"26	",
+"27	",
+"28	",
+"29	",
+"30	",
+"31	",
+"32	",
+"33	",
+"34	",
+"35	",
+"36	",
+"37	",
+"38	",
+"39	",
+"40	",
+"41	",
+"42	",
+"43	",
+"44	",
+"45	",
+"46	",
+"47	",
+"48	",
+"49	",
+"50	",
+"51	",
+"52	",
+"53	",
+"54	",
+"55	",
+"56	",
+"57	",
+"58	",
+"59	",
+"60	",
+"61	",
+"62	",
+"63	",
+"64	",
+"65	",
+"66	",
+"67	",
+"68	",
+"69	",
+"70	",
+"71	",
+"72	",
+"73	",
+"74	",
+"75	",
+"76	",
+"77	",
+"78	",
+"79	",
+"80	",
+"81	",
+"82	",
+"83	",
+"84	",
+"85	",
+"86	",
+"87	",
+"88	",
+"89	",
+"90	",
+"91	",
+"92	",
+"93	",
+"94	",
+"95	",
+"96	",
+"97	",
+"98	",
+"99	"
+
+],
+			datasets:[
+			{
+				label: "Acompanhamento dos valores",
+				data:{{grafico}},
+				borderWidth: 4,
+				borderColor: 'rgba(77,166,253,0.85)',
+				backgroundColor: 'transparent'
+				
+			},
+			]
+		
+		},
+		options:{
+			title:{
+			  display:true,
+			  fontSize:30,
+			  text: "GRAFICO DE GERAÇÃO"
+			},
+			labels:{
+				fontStyle: "bold"
+			}	
+		}
+		
+	   
+	   });
+	   </script>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  </body>
+</html>
